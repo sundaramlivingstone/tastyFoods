@@ -1,0 +1,81 @@
+.bg-leaf img {
+  height: 100%;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-text h1 {
+  font-size: 5em;
+}
+
+.hero-text h1 span {
+  color: red;
+}
+
+.hero-text .btns {
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btns .orderBtn,
+.booktableBtn {
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.btns .orderBtn {
+  border: 1.5px solid orange;
+  background: #fec21a;
+}
+
+.btns .booktableBtn {
+  border: 1.5px solid #fff;
+}
+
+.btns .orderBtn:hover {
+  border: 1.5px solid #fff;
+  background: none;
+  color: black;
+}
+.btns .booktableBtn:hover {
+  border: 1.5px solid orange;
+  background: #fec21a;
+}
+
+.btns .orderBtn a,
+.booktableBtn a {
+  text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+}
+
+.angle-down {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+}
+
+.angle-down i::before {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 15.8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.angle-down i:hover::before {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.3);
+}

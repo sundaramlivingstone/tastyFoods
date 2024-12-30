@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section id="firstNav" class="firstNav">
+  <div class="time"><span><img src="/public/timepng.png" alt="openTime"></span>Mon-fri:8am - 10pm</div>
+  <div class="firstNavBtns">
+    <ul>
+      <li><a href="#" class="firstNavAbout">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#" class="firstNavLogin">Login/Register</a></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .firstNav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+	gap: 15rem;
+    background-color: #fff;
+    color: black;
+    padding: 10px 20px;
+    font-family: 'Arial, sans-serif';
+	border-bottom: 1px solid #000;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+}
+
+.time img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.firstNavBtns ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.firstNavBtns ul li a {
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.firstNavBtns ul li .firstNavAbout{
+	border-right: 2px solid #000;
+}
+.firstNavBtns ul li .firstNavLogin{
+	border-left: 2px solid #000;
+}
+
+.firstNavBtns ul li a:hover {
+    background-color: #575757;
+}
+</style>
