@@ -1,34 +1,43 @@
----
-import './Menu.css'
----
-
-<section class="menuSection w-full h-25% flex justify-evenly py-2 flex-wrap" id="menuSection">
-  <div class="menu-bag">
-    <div class="menu menu1-burger"><img src="/burger2.png" alt="burger"></div>
-    <div class="menu1-txt">Burger</div>
-  </div>
-  <div class="menu-bag">
-    <div class="menu menu2-fries"><img src="/Fries.png" alt="burger"></div>
-    <div class="menu1-txt">French Fry</div>
-  </div>
-  <div class="menu-bag">
-    <div class="menu menu3-pasta"><img src="/pasta.png" alt="burger"></div>
-    <div class="menu1-txt">Pasta</div>
-  </div>
-  <div class="menu-bag">
-    <div class="menu menu4-drink"><img src="/cold-drink.png" alt="burger"></div>
-    <div class="menu1-txt">Cold Drinks</div>
-  </div>
-  <div class="menu-bag">
-    <div class="menu menu5-sandwich"><img src="/sandwiche.png" alt="burger"></div>
-    <div class="menu1-txt">Sandwichs</div>
-  </div>
-  <div class="menu-bag">
-    <div class="menu menu6-pizza"><img src="/Pizza.png" alt="burger"></div>
-    <div class="menu1-txt">Pizza</div>
-  </div>
-  <div class="menu-bag">
-    <div class="menu menu7-combo"><img src="/Combo.png" alt="burger"></div>
-    <div class="menu1-txt">Combo</div>
+<section class="menuSection relative w-full py-2 overflow-x-auto hide-scrollbar" id="menuSection">
+  <div class="flex items-center justify-evenly gap-5 py-4 min-w-min">
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu1-burger h-28 w-28"><img class="w-fit" src="/burger2.png" alt="Classic Burger"></div>
+      <div class="menu1-txt text-center">Burger</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu2-fries h-28 w-28 flex justify-center"><img class="h-full w-fit" src="/Fries.png" alt="French Fries"></div>
+      <div class="menu1-txt text-center">French Fry</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu3-pasta h-28 w-28"><img class="h-fit w-fit" src="/pasta.png" alt="Fresh Pasta"></div>
+      <div class="menu1-txt text-center">Pasta</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu4-drink h-28 w-28 flex justify-center"><img class="h-full w-fit" src="/cold-drink.png" alt="Cold Drinks"></div>
+      <div class="menu1-txt text-center">Cold Drinks</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu5-sandwich h-28 w-28"><img class="h-fit w-fit" src="/sandwiche.png" alt="Fresh Sandwich"></div>
+      <div class="menu1-txt text-center">Sandwichs</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu6-pizza h-28 w-28"><img class="h-fit w-fit" src="/Pizza.png" alt="Pizza"></div>
+      <div class="menu1-txt text-center">Pizza</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu7-combo h-28 w-28"><img class="h-fit w-fit" src="/Combo.png" alt="Combo Meal"></div>
+      <div class="menu1-txt text-center">Combo</div>
+    </div>
   </div>
 </section>
+
+<style>
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>

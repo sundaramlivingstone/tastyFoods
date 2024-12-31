@@ -1,32 +1,74 @@
----
-// Hero.astro
----
+<!-- Hero Section -->
+<section class="relative max-h-screen w-full bg-gradient-to-br from-[#eea238] to-[#fec21a] overflow-hidden py-12 px-4 md:px-6 lg:px-8">
+  <div class="container mx-auto">
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+      <!-- Text Content -->
+      <div class="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          Welcome to <br class="hidden sm:block" /> 
+          Our <span class="text-red-500 inline-block">Tasty Foods</span>
+        </h1>
+        
+        <p class="text-base md:text-lg text-white/90 max-w-xl mx-auto lg:mx-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet saepe reprehenderit facilis modi porro architecto quasi, quos, quia nisi ullam.
+        </p>
 
-<section class="relative w-full h-screen flex justify-between bg-[#eea238] overflow-hidden px-28" id="hero">  
-  <div class="flex flex-col justify-center px-4 md:px-8 lg:px-12 max-w-2xl">
-    <h1 class="text-4xl md:text-6xl lg:text-7xl mb-6 font-bold">
-      Welcome to <br /> Our <span class="text-red-500">Tasty Foods</span>
-    </h1>
-    <p class="text-base md:text-lg mb-8">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eveniet saepe reprehenderit facilis modi porro architecto quasi, quos, quia nisi ullam fugiat fugit voluptatem at iste expedita qui, quidem autem!
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 sm:gap-8">
-      <a 
-        href="#" 
-        class="px-8 py-4 rounded-full text-lg md:text-xl text-white text-center font-['Courier_New'] border-[1.5px] border-orange-400 bg-[#fec21a] transition-all duration-300 hover:bg-transparent hover:text-black hover:border-white"
-      >
-        Order Now
-      </a>
-      <a 
-        href="#" 
-        class="px-8 py-4 rounded-full text-lg md:text-xl text-white text-center font-['Courier_New'] border-[1.5px] border-white transition-all duration-300 hover:bg-[#fec21a] hover:border-orange-400"
-      >
-        Book a Table
-      </a>
+        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6">
+          <a 
+            href="#" 
+            class="inline-flex items-center justify-center px-6 py-3 text-base md:text-lg font-medium text-white bg-[#fec21a] border-2 border-orange-400 rounded-full transition-all duration-300 hover:bg-transparent hover:text-white hover:border-white shadow-lg hover:shadow-xl"
+          >
+            Order Now
+          </a>
+          <a 
+            href="#" 
+            class="inline-flex items-center justify-center px-6 py-3 text-base md:text-lg font-medium text-white border-2 border-white rounded-full transition-all duration-300 hover:bg-[#fec21a] hover:border-orange-400 shadow-lg hover:shadow-xl"
+          >
+            Book a Table
+          </a>
+        </div>
+      </div>
+
+      <!-- Image Container -->
+      <div class="w-full lg:w-1/2 flex justify-center items-center mt-8 lg:mt-0">
+        <img 
+          src="/burger1.png" 
+          alt="Delicious Burger" 
+          class="w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] xl:max-w-[600px] h-auto object-contain transform transition-transform duration-300 hover:scale-105"
+          loading="eager"
+        />
+      </div>
     </div>
   </div>
-  
-  <div class="flex justify-center items-center w-1/4 md:w-auto">
-    <img src="/burger1.png" alt="Burger" class="w-full h-auto object-contain" />
-  </div>
 </section>
+
+<!-- Custom styles for additional animations and effects -->
+<style>
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Optional: Add a subtle animation to the hero section */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  section > div {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  /* Optional: Improve button tap highlight on mobile */
+  @media (hover: none) {
+    a:active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  /* Optional: Improve performance for animations */
+  a {
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform;
+  }
+</style>

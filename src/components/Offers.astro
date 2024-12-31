@@ -1,63 +1,66 @@
 ---
 ---
-<section class="offerSection w-full h-screen flex flex-col gap-10 pt-10" id="offerSection">
-  <div class="swiper offers-slider">
+<section class="offerSection w-full min-h-screen flex flex-col gap-6 md:gap-10 pt-6 md:pt-10" id="offerSection">
+  <!-- Swiper Section -->
+  <div class="swiper offers-slider px-5 md:px-8 lg:px-12 max-w-full">
     <div class="swiper-wrapper">
       <div class="swiper-slide glass">
-        <img src="/tranding-food-1.png" alt="Trending Food 1" />
+        <img src="/tranding-food-1.png" alt="Special Pizza Offer" loading="lazy" />
         <div class="offer-text">
           <h1>Pizza</h1>
-          <a href="">Get a 20% Discount On FIRST ORDER</a>
-          <a href="">$10.90</a>
+          <a href="" class="pointer-events-auto">Get a 20% Discount On FIRST ORDER</a>
+          <a href="" class="pointer-events-auto">$10.90</a>
         </div>
       </div>
       <div class="swiper-slide glass">
-        <img src="/tranding-food-2.png" alt="Trending Food 2" />
+        <img src="/tranding-food-2.png" alt="Special Burger Offer" loading="lazy" />
         <div class="offer-text">
           <h1>Burger</h1>
-          <a href="">Get a 20% Discount On FIRST ORDER</a>
-          <a href="">$12.90</a>
+          <a href="" class="pointer-events-auto">Get a 20% Discount On FIRST ORDER</a>
+          <a href="" class="pointer-events-auto">$12.90</a>
         </div>
       </div>
       <div class="swiper-slide glass">
-        <img src="/tranding-food-3.png" alt="Trending Food 3" />
+        <img src="/tranding-food-3.png" alt="Special Combo Offer" loading="lazy" />
         <div class="offer-text">
           <h1>Combo</h1>
-          <a href="">Get a 20% Discount On FIRST ORDER</a>
-          <a href="">$19.90</a>
+          <a href="" class="pointer-events-auto">Get a 20% Discount On FIRST ORDER</a>
+          <a href="" class="pointer-events-auto">$19.90</a>
         </div>
       </div>
     </div>
     <div class="swiper-pagination"></div>
   </div>
-  <div class="about flex justify-between px-96">
-    <div class="abtImg h-96 bg-slate-600"><img class="h-full" src="/tranding-food-1.png"></div>
-    <div class="abtMsg bg-white w-1/2 flex flex-col justify-evenly py-9">
-      <h1 class="font-serif text-4xl font-bold tracking-wide">About Tasty <span class="text-red-600">Food</span></h1>
-      <p class="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quae dicta iure eligendi dolor debitis odio placeat, at quidem natus optio nemo adipisci consequatur omnis vitae officiis repellat explicabo cupiditate.
+
+  <!-- About Section -->
+  <div class="about flex flex-col lg:flex-row gap-8 px-4 md:px-8 lg:px-16 xl:px-24">
+    <div class="abtImg h-64 md:h-80 lg:h-96 bg-slate-600 w-full lg:w-1/2">
+      <img class="h-full w-full object-cover" src="/tranding-food-1.png" alt="Featured Dish" loading="lazy">
+    </div>
+    <div class="abtMsg bg-white w-full lg:w-1/2 flex flex-col justify-evenly py-6 md:py-9 px-4 md:px-6">
+      <h1 class="font-serif text-3xl md:text-4xl font-bold tracking-wide">About Tasty <span class="text-red-600">Food</span></h1>
+      <p class="my-4 text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quae dicta iure eligendi dolor debitis odio placeat, at quidem natus optio nemo adipisci consequatur omnis vitae officiis repellat explicabo cupiditate.
       </p>
-      <ul class="my-2">
-        <li class="font-bold">☑️ Delicious & Healthy Foods</li>
-        <li class="font-bold">☑️ Best Price & Offers</li>
-        <li class="font-bold">☑️ Made By Fresh Ingredients</li>
+      <ul class="my-2 space-y-2">
+        <li class="font-bold text-sm md:text-base">☑️ Delicious & Healthy Foods</li>
+        <li class="font-bold text-sm md:text-base">☑️ Best Price & Offers</li>
+        <li class="font-bold text-sm md:text-base">☑️ Made By Fresh Ingredients</li>
       </ul>
-      <div class=" w-full h-12 flex my-4 justify-between items-center">
-        <a href="#" class="bg-yellow-500 text-white border-2 border-yellow-300 rounded-full px-4 py-2">Order Now</a>
-        <a href="#" class=" text-black border-2 border-gray-950 rounded-full px-4 py-2">Read More</a>
+      <div class="w-full flex flex-col sm:flex-row gap-4 my-4 sm:justify-start">
+        <a href="#" class="bg-yellow-500 text-white border-2 border-yellow-300 rounded-full px-6 py-2 text-center hover:bg-yellow-600 transition-colors">Order Now</a>
+        <a href="#" class="text-black border-2 border-gray-950 rounded-full px-6 py-2 text-center hover:bg-gray-100 transition-colors">Read More</a>
       </div>
     </div>
   </div>
 </section>
 
-
-
 <style>
- .offer-text {
+.offer-text {
   position: absolute;
   bottom: 10px;
   left: 10px;
   color: white;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 5px;
@@ -68,7 +71,7 @@
 
 .offer-text h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: clamp(20px, 3vw, 24px);
   font-weight: bold;
 }
 
@@ -83,8 +86,8 @@
   position: relative;
   background-position: center;
   background-size: cover;
-  width: 300px;
-  height: 200px;
+  width: min(300px, 80vw);
+  height: min(200px, 53vw);
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -109,16 +112,9 @@
   transform: scale(1.05);
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: #000;
   opacity: 0.5;
 }
@@ -127,7 +123,15 @@
   opacity: 1;
 }
 
-
+@media (max-width: 640px) {
+  .swiper-slide {
+    transform-origin: center center;
+  }
+  
+  .offer-text {
+    padding: 8px;
+  }
+}
 </style>
 
 <script>
@@ -155,7 +159,24 @@ const swiper = new Swiper('.offers-slider', {
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
-  }
+  },
+  breakpoints: {
+    320: {
+      coverflowEffect: {
+        depth: 100,
+      },
+    },
+    640: {
+      coverflowEffect: {
+        depth: 150,
+      },
+    },
+    1024: {
+      coverflowEffect: {
+        depth: 200,
+      },
+    },
+  },
 });
 
 document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
@@ -163,6 +184,4 @@ document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
     swiper.slideTo(index, 500);
   });
 });
-
-  
 </script>

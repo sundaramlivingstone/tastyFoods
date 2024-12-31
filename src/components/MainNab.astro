@@ -1,52 +1,68 @@
 ---
-import Image from "astro/components/Image.astro"
-import logo from "../assets/logo.png"
+import Image from "astro/components/Image.astro";
+import logo from "../assets/logo.png";
 ---
 
-<nav class="fixed w-full bg-white/80 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="mainNav">
+<nav class=" top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50 transition-all duration-300" id="mainNav">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
+    <div class="flex justify-between items-center h-16 md:h-20">
       <!-- Logo -->
       <div class="flex-shrink-0">
-        <Image src={logo} alt="tastyFood" class="h-12 w-auto" />
+        <a href="/" class="flex items-center">
+          <Image 
+            src={logo} 
+            alt="tastyFood" 
+            class="h-8 md:h-12 w-auto transition-all duration-300"
+            width={150}
+            height={48}
+          />
+        </a>
       </div>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="#" class="nav-link">Home</a>
+      <div class="hidden md:flex items-center space-x-1 lg:space-x-8">
+        <a href="#" class="nav-link group">
+          <span class="nav-text">Home</span>
+          <span class="nav-underline"></span>
+        </a>
         
         <!-- Menu Dropdown -->
-        <div class="relative group">
+        <div class="relative group" x-data="{ open: false }">
           <button class="nav-link group inline-flex items-center">
-            Menu
+            <span class="nav-text">Menu</span>
             <svg class="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
+            <span class="nav-underline"></span>
           </button>
-          <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white/90 backdrop-blur-sm opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300">
-            <div class="py-1">
-              <a href="#" class="dropdown-item">Link 1</a>
-              <a href="#" class="dropdown-item">Link 2</a>
-              <a href="#" class="dropdown-item">Link 3</a>
+          <div class="dropdown-menu">
+            <div class="py-2">
+              <a href="#" class="dropdown-item">Breakfast</a>
+              <a href="#" class="dropdown-item">Lunch</a>
+              <a href="#" class="dropdown-item">Dinner</a>
             </div>
           </div>
         </div>
 
-        <a href="#" class="nav-link">Order Food</a>
+        <a href="#" class="nav-link group">
+          <span class="nav-text">Order Food</span>
+          <span class="nav-underline"></span>
+        </a>
         
         <!-- Blog Dropdown -->
         <div class="relative group">
           <button class="nav-link group inline-flex items-center">
-            Blog
+            <span class="nav-text">Blog</span>
             <svg class="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
+            <span class="nav-underline"></span>
           </button>
-          <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white/90 backdrop-blur-sm opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300">
-            <div class="py-1">
-              <a href="#" class="dropdown-item">Link 1</a>
-              <a href="#" class="dropdown-item">Link 2</a>
-              <a href="#" class="dropdown-item">Link 3</a>
+          <div class="dropdown-menu">
+            <div class="py-2">
+              <a href="#" class="dropdown-item">Latest Posts</a>
+              <a href="#" class="dropdown-item">Categories</a>
+              <a href="#" class="dropdown-item">Archive</a>
             </div>
           </div>
         </div>
@@ -54,138 +70,431 @@ import logo from "../assets/logo.png"
         <!-- Pages Dropdown -->
         <div class="relative group">
           <button class="nav-link group inline-flex items-center">
-            Pages
+            <span class="nav-text">Pages</span>
             <svg class="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
+            <span class="nav-underline"></span>
           </button>
-          <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white/90 backdrop-blur-sm opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300">
-            <div class="py-1">
-              <a href="#" class="dropdown-item">Link 1</a>
-              <a href="#" class="dropdown-item">Link 2</a>
-              <a href="#" class="dropdown-item">Link 3</a>
+          <div class="dropdown-menu">
+            <div class="py-2">
+              <a href="#" class="dropdown-item">About Us</a>
+              <a href="#" class="dropdown-item">Contact</a>
+              <a href="#" class="dropdown-item">FAQ</a>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Contact and Cart -->
-      <div class="hidden md:flex items-center space-x-6">
-        <img src="/contactNo.png" alt="Contact" class="h-8 w-auto" />
-        <a href="#" class="inline-flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 hover:border-gray-400 transition-colors duration-200">
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="hidden sm:flex items-center space-x-4 lg:space-x-6">
+        <img 
+          src="/contactNo.png" 
+          alt="Contact" 
+          class="h-6 md:h-8 w-auto transition-all duration-300"
+          width={32}
+          height={32}
+        />
+        <a href="#" class="cart-button group">
+          <span class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">0</span>
+          <svg class="h-5 w-5 transition-colors duration-200 group-hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
         </a>
-        <a href="#" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-colors duration-200">
+        <a href="#" class="order-button">
           Order Online
         </a>
       </div>
 
       <!-- Mobile menu button -->
-    <div class="hamburger">
-      <label class="hamburger">
-        <input class="mobile-menu-button" type="checkbox">
-        <svg viewBox="0 0 32 32">
-          <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
-          <path class="line" d="M7 16 27 16"></path>
-        </svg>
-      </label>
-    </div>
+      <div class="flex items-center md:hidden">
+        <button class="hamburger" aria-label="Menu">
+          <input class="mobile-menu-button" type="checkbox" aria-hidden="true">
+          <svg viewBox="0 0 32 32">
+            <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+            <path class="line" d="M7 16 27 16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- Mobile menu -->
-  <div class="hidden md:hidden" id="mobile-menu">
-    
-    <div class="px-2 pt-2 pb-3 space-y-1">
+  <div class="hidden md:hidden bg-white/95 backdrop-blur-md" id="mobile-menu">
+    <div class="flex flex-col space-y-2 px-4 pt-2 pb-4">
       <a href="#" class="mobile-nav-link">Home</a>
-      <a href="#" class="mobile-nav-link">Menu</a>
+      
+      <!-- Mobile Menu Dropdown -->
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-button" onclick="toggleMobileDropdown(this)">
+          Menu
+          <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="mobile-dropdown-content">
+          <a href="#" class="mobile-dropdown-item">Breakfast</a>
+          <a href="#" class="mobile-dropdown-item">Lunch</a>
+          <a href="#" class="mobile-dropdown-item">Dinner</a>
+        </div>
+      </div>
+
       <a href="#" class="mobile-nav-link">Order Food</a>
-      <a href="#" class="mobile-nav-link">Blog</a>
-      <a href="#" class="mobile-nav-link">Pages</a>
+      
+      <!-- Mobile Blog Dropdown -->
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-button" onclick="toggleMobileDropdown(this)">
+          Blog
+          <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="mobile-dropdown-content">
+          <a href="#" class="mobile-dropdown-item">Latest Posts</a>
+          <a href="#" class="mobile-dropdown-item">Categories</a>
+          <a href="#" class="mobile-dropdown-item">Archive</a>
+        </div>
+      </div>
+
+      <!-- Mobile Pages Dropdown -->
+      <div class="mobile-dropdown">
+        <button class="mobile-dropdown-button" onclick="toggleMobileDropdown(this)">
+          Pages
+          <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="mobile-dropdown-content">
+          <a href="#" class="mobile-dropdown-item">About Us</a>
+          <a href="#" class="mobile-dropdown-item">Contact</a>
+          <a href="#" class="mobile-dropdown-item">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Mobile Contact and Cart -->
+      <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+        <img 
+          src="/contactNo.png" 
+          alt="Contact" 
+          class="h-8 w-auto"
+          width={32}
+          height={32}
+        />
+        <div class="flex gap-4">
+          <a href="#" class="cart-button group">
+            <span class="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">0</span>
+            <svg class="h-5 w-5 transition-colors duration-200 group-hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </a>
+          <a href="#" class="order-button">
+            Order Online
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
 
 <style>
-  .hamburger {
-  cursor: pointer;
-}
-
-.hamburger input {
-  display: none;
-}
-
-.hamburger svg {
-  /* The size of the SVG defines the overall size */
-  height: 3em;
-  /* Define the transition for transforming the SVG */
-  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.line {
-  fill: none;
-  stroke: black;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 3;
-  /* Define the transition for transforming the Stroke */
-  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.line-top-bottom {
-  stroke-dasharray: 12 63;
-}
-
-.hamburger input:checked + svg {
-  transform: rotate(-45deg);
-}
-
-.hamburger input:checked + svg .line-top-bottom {
-  stroke-dasharray: 20 300;
-  stroke-dashoffset: -32.42;
-}
-
-  /* Base styles that can't be handled by Tailwind */
+  /* Base Styles */
   .nav-link {
-    @apply text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors duration-200;
+    @apply relative px-3 py-2 text-sm font-medium text-gray-700 transition-all duration-200 hover:text-red-600;
   }
-  
+
+  .nav-text {
+    @apply relative z-10;
+  }
+
+  .nav-underline {
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-red-500 transition-all duration-300 group-hover:w-full;
+  }
+
+  .dropdown-menu {
+    @apply absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white/95 backdrop-blur-md 
+           opacity-0 -translate-y-2 invisible 
+           group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible 
+           transition-all duration-300 ring-1 ring-black ring-opacity-5;
+  }
+
   .dropdown-item {
-    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150;
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 
+           transition-colors duration-150;
   }
-  
+
+  .cart-button {
+    @apply relative inline-flex items-center justify-center h-10 w-10 rounded-full 
+           border border-gray-300 hover:border-red-400 transition-all duration-200;
+  }
+
+  .order-button {
+    @apply inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-red-600 hover:bg-red-700 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
+  }
+
+  /* Mobile Navigation */
+  .hamburger {
+    @apply cursor-pointer p-2;
+  }
+
+  .hamburger input {
+    @apply hidden;
+  }
+
+  .hamburger svg {
+    @apply h-8 transition-transform duration-500;  /* Fixed: Changed from duration-600 to duration-500 */
+  }
+
+  .line {
+    fill: none;
+    stroke: theme('colors.gray.700');
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    transition: stroke-dasharray 500ms cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 500ms cubic-bezier(0.4, 0, 0.2, 1); /* Updated to match new duration */
+  }
+
+  .line-top-bottom {
+    stroke-dasharray: 12 63;
+  }
+
+  .hamburger input:checked + svg {
+    @apply rotate-45;
+  }
+
+  .hamburger input:checked + svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+  }
+
+  .mobile-dropdown-button {
+    @apply w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 transition-colors duration-200;
+  }
+
+  .mobile-dropdown-content {
+    @apply hidden pl-4 space-y-2 mt-2;
+  }
+
   .mobile-nav-link {
-    @apply block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200;
+    @apply block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 transition-colors duration-200;
+  }
+
+  .mobile-dropdown-item {
+    @apply block px-3 py-2 text-sm text-gray-700 hover:text-red-600 hover:bg-red-50 transition-colors duration-200;
+  }
+
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --nav-bg: theme('colors.gray.900');
+      --text-primary: theme('colors.gray.100');
+      --text-secondary: theme('colors.gray.300');
+      --hover-bg: theme('colors.red.900');
+    }
+
+    #mainNav {
+      @apply bg-gray-900/80;
+    }
+
+    .nav-link {
+      @apply text-gray-100 hover:text-red-400;
+    }
+
+    .dropdown-menu {
+      @apply bg-gray-900/95 ring-gray-700;
+    }
+
+    .dropdown-item {
+      @apply text-gray-100 hover:bg-gray-800 hover:text-red-400;
+    }
+
+    .cart-button {
+      @apply border-gray-700 hover:border-red-500;
+    }
+
+    .mobile-menu {
+      @apply bg-gray-900/95;
+    }
+
+    .mobile-nav-link,
+    .mobile-dropdown-button {
+      @apply text-gray-100 hover:text-red-400 hover:bg-gray-800;
+    }
+
+    .mobile-dropdown-item {
+      @apply text-gray-100 hover:text-red-400 hover:bg-gray-800;
+    }
+
+    .line {
+      stroke: theme('colors.gray.100');
+    }
+  }
+
+  /* Animations */
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Scroll Behaviors */
+  .nav-scrolled {
+    @apply shadow-md bg-white/90 dark:bg-gray-900/90;
+  }
+
+  /* Focus States */
+  .nav-link:focus-visible,
+  .dropdown-item:focus-visible,
+  .cart-button:focus-visible,
+  .order-button:focus-visible {
+    @apply outline-none ring-2 ring-red-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .mobile-dropdown button.active svg {
+      @apply rotate-180;
+    }
+  }
+
+  /* Performance Optimizations */
+  .nav-link,
+  .dropdown-item,
+  .cart-button,
+  .order-button {
+    @apply will-change-transform;
+  }
+
+  /* Accessibility - Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    nav {
+      @apply hidden;
+    }
+  }
+
+  /* Custom Scrollbar */
+  .dropdown-menu::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  .dropdown-menu::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .dropdown-menu::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+  }
+
+  /* States */
+  .nav-loading {
+    @apply animate-pulse;
+  }
+
+  .nav-error {
+    @apply border-red-500 bg-red-50 dark:bg-red-900/20;
+  }
+
+  /* Touch Device Optimizations */
+  @media (hover: none) {
+    .nav-link:hover {
+      @apply bg-transparent;
+    }
+    
+    .dropdown-menu {
+      @apply transition-none;
+    }
   }
 </style>
 
 <script>
-  // Handle mobile menu toggle
-  const mobileMenuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  // Handle navbar transparency on scroll
+  // Improved scroll handling with throttling
   let lastScroll = 0;
-  const navbar = document.getElementById('mainNav');
+  let scrollTimeout: number;
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-      navbar?.classList.remove('bg-white/80');
-      navbar?.classList.add('bg-transparent');
-    } else {
-      navbar?.classList.remove('bg-transparent');
-      navbar?.classList.add('bg-white/80');
+  const handleScroll = () => {
+    if (scrollTimeout) {
+      window.cancelAnimationFrame(scrollTimeout);
     }
 
-    lastScroll = currentScroll;
-  });
+    scrollTimeout = window.requestAnimationFrame(() => {
+      const navbar = document.getElementById('mainNav');
+      const currentScroll = window.pageYOffset;
+      
+      if (!navbar) return;
+
+      if (currentScroll <= 0) {
+        navbar.classList.remove('nav-scrolled');
+      } else {
+        navbar.classList.add('nav-scrolled');
+      }
+
+      // Add direction-based classes
+      if (currentScroll > lastScroll) {
+        navbar.classList.add('nav-hidden');
+      } else {
+        navbar.classList.remove('nav-hidden');
+      }
+
+      lastScroll = currentScroll;
+    });
+  };
+
+  // Initialize navigation
+  const initNavigation = () => {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button') as HTMLInputElement;
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('mainNav');
+
+    if (!mobileMenuButton || !mobileMenu || !navbar) return;
+
+    // Event Listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('click', handleOutsideClick);
+    
+    // Initialize dropdown handlers
+    initializeDropdowns();
+    
+    // Initialize smooth scroll
+    initializeSmoothScroll();
+  };
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', initNavigation);
+
+  // Clean up function
+  const cleanup = () => {
+    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('resize', handleResize);
+    document.removeEventListener('click', handleOutsideClick);
+  };
+
+  // Add cleanup on page unload
+  window.addEventListener('unload', cleanup);
 </script>
