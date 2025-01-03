@@ -1,19 +1,20 @@
 ---
 import { Image } from "astro:assets";
 import Logo from "../assets/logo.png";
+import timepng from "../assets/timepng.png";
 ---
 
 <!-- Top Navigation -->
 <section id="firstNav" class="firstNav">
   <div class="time flex items-center">
-    <img src="/timepng.png" alt="openTime" width="20" height="20" />
+    <Image src={timepng} alt="openTime" class="mr-2 max-w-4 max-h-4" />
     <span>Mon-fri: 8am - 10pm</span>
   </div>
   <div class="firstNavBtns">
     <ul>
-      <li><a href="#" class="firstNavAbout">About Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li><a href="#" class="firstNavLogin">Login/Register</a></li>
+      <li><a href="/About" class="firstNavAbout">About Us</a></li>
+      <li><a href="#contactSection">Contact Us</a></li>
+      <li><a href="/login" class="firstNavLogin">Login/Register</a></li>
     </ul>
   </div>
 </section>
@@ -35,24 +36,64 @@ import Logo from "../assets/logo.png";
     </div>
     <div class="nav-container">
       <ul class="nav-links">
-        <li><a href="/menu" class="nav-link">Menu</a></li>
+        <li><a href="#foodList" class="nav-link">Menu</a></li>
         <li><a href="/event" class="nav-link">Events</a></li>
-        <li><a href="/gallery" class="nav-link">Gallery</a></li>
-        <li><a href="/about-us" class="nav-link">About</a></li>
-        <li><a href="/contact" class="nav-link">Contact</a></li>
+        <li><a href="#foodGallary" class="nav-link">Gallery</a></li>
+        <li><a href="/About" class="nav-link">About</a></li>
+        <li><a href="#contactSection" class="nav-link">Contact</a></li>
       </ul>
     </div>
     <a href="/reservation" class="book-table">Book a table</a>
-    <button class="hamburger" aria-label="Toggle menu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
+
+    <div class="flex">
+      <!-- Profile Dropdown -->
+      <div class="profile-container">
+        <button class="profile-button" aria-label="Profile menu" aria-expanded="false">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <div class="profile-dropdown">
+          <ul>
+            <li>
+              <a href="/Profile">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Profile#orders">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span>Orders</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Profile#favorites">
+                <i class="fa-regular fa-heart"></i>
+                <span>Favourites</span>
+              </a>
+            </li>
+            <li>
+              <a href="/Profile#settings">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+        <!-- hamburger -->
+        <button class="hamburger" aria-label="Toggle menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+    </div>    
   </nav>
 </header>
 
+<!-- -------------------------------- Style -------------------------------- -->
+
 <style>
-  /* Top Navigation Styles */
   .firstNav {
     width: 100%;
     height: auto;
@@ -73,7 +114,7 @@ import Logo from "../assets/logo.png";
     font-size: 1rem;
   }
 
-  .time img {
+  .time :global(img) {
     width: 20px;
     height: 20px;
     margin-right: 8px;
@@ -149,6 +190,7 @@ import Logo from "../assets/logo.png";
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
   }
 
   .nav-links {
@@ -220,10 +262,90 @@ import Logo from "../assets/logo.png";
     height: 2px;
     margin: 6px 0;
     background-color: #333;
-    transition: 0.3s;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     border-radius: 4px;
   }
 
+  /* Profile Dropdown Styles */
+  .profile-container {
+    position: relative;
+    margin-left: 1rem;
+  }
+
+  .profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .profile-button i {
+    font-size: 1.25rem;
+    color: #333;
+  }
+
+  .profile-button:hover {
+    background-color: #f5f5f5;
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-top: 0.5rem;
+  }
+
+  .profile-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .profile-dropdown ul {
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+  }
+
+  .profile-dropdown li {
+    padding: 0;
+  }
+
+  .profile-dropdown a {
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  .profile-dropdown a:hover {
+    background-color: #f5f5f5;
+    color: #e96417;
+  }
+
+  .profile-dropdown i {
+    margin-right: 0.75rem;
+    width: 20px;
+    text-align: center;
+  }
   /* Responsive Styles */
   @media (max-width: 1024px) {
     .navbar {
@@ -257,7 +379,6 @@ import Logo from "../assets/logo.png";
       align-items: center;
       z-index: 1500;
       transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
     }
 
@@ -295,6 +416,13 @@ import Logo from "../assets/logo.png";
     .hamburger.active .hamburger-line:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
+    .profile-container {
+      margin-right: 1.5rem;
+    }
+
+    .profile-dropdown {
+      width: 180px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -313,6 +441,15 @@ import Logo from "../assets/logo.png";
 
     .navbar {
       padding: 0 1rem;
+    }
+
+    .profile-button {
+      width: 36px;
+      height: 36px;
+    }
+
+    .profile-button i {
+      font-size: 1.1rem;
     }
   }
 </style>
@@ -357,6 +494,39 @@ import Logo from "../assets/logo.png";
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && isMenuOpen) {
         toggleMenu();
+      }
+    });
+
+    // Profile Dropdown functionality
+    const profileButton = document.querySelector('.profile-button');
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    let isDropdownOpen = false;
+
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      isDropdownOpen = !isDropdownOpen;
+      profileDropdown.classList.toggle('active');
+      profileButton.setAttribute('aria-expanded', isDropdownOpen);
+    }
+
+    // Toggle on click
+    profileButton.addEventListener('click', toggleDropdown);
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      if (isDropdownOpen && !profileDropdown.contains(event.target)) {
+        isDropdownOpen = false;
+        profileDropdown.classList.remove('active');
+        profileButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isDropdownOpen) {
+        isDropdownOpen = false;
+        profileDropdown.classList.remove('active');
+        profileButton.setAttribute('aria-expanded', 'false');
       }
     });
   });

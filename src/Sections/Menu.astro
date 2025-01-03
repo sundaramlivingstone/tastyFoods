@@ -1,0 +1,138 @@
+---
+import { Image } from "astro:assets"
+import burger2 from "../assets/burger2.png"
+import Fries from "../assets/Fries.png"
+import pasta from "../assets/pasta.png"
+import coldDrink from "../assets/cold-drink.png"
+import sandwiche from "../assets/sandwiche.png"
+import Pizza from "../assets/Pizza.png"
+import Combo from "../assets/Combo.png"
+---
+
+<section class="menuSection relative w-full py-2 overflow-x-auto hide-scrollbar" id="menuSection">
+  <div class="flex items-center justify-evenly gap-5 py-4 min-w-min">
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu1-burger h-28 w-28">
+        <Image class="w-fit hover:scale-110 transition-transform" src={burger2} alt="Classic Burger" />
+      </div>
+      <div class="menu1-txt text-center">Burger</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu2-fries h-28 w-28 flex justify-center">
+        <Image class="h-full w-fit hover:scale-110 transition-transform" src={Fries} alt="French Fries" />
+      </div>
+      <div class="menu1-txt text-center">French Fries</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu3-pasta h-28 w-28">
+        <Image class="h-fit w-fit hover:scale-110 transition-transform" src={pasta} alt="Fresh Pasta" />
+      </div>
+      <div class="menu1-txt text-center">Pasta</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu4-drink h-28 w-28 flex justify-center">
+        <Image class="h-full w-fit hover:scale-110 transition-transform" src={coldDrink} alt="Cold Drinks" />
+      </div>
+      <div class="menu1-txt text-center">Cold Drinks</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu5-sandwich h-28 w-28">
+        <Image class="h-fit w-fit hover:scale-110 transition-transform" src={sandwiche} alt="Fresh Sandwich" />
+      </div>
+      <div class="menu1-txt text-center">Sandwich</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu6-pizza h-28 w-28">
+        <Image class="h-fit w-fit hover:scale-110 transition-transform" src={Pizza} alt="Pizza" />
+      </div>
+      <div class="menu1-txt text-center">Pizza</div>
+    </div>
+    <div class="menu-bag flex-shrink-0">
+      <div class="menu menu7-combo h-28 w-28">
+        <Image class="h-fit w-fit hover:scale-110 transition-transform" src={Combo} alt="Combo Meal" />
+      </div>
+      <div class="menu1-txt text-center">Combo</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menuSection::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    box-shadow: 0 -10px 10px -5px rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
+
+  .menu-bag {
+    width: fit-content;
+    height: auto;
+    text-align: center;
+  }
+
+  .menu-bag .menu {
+    width: fit-content;
+  }
+
+  .menu-bag .menu :global(img) {
+    width: 100px;
+    height: 120px;
+    filter: drop-shadow(0px 12px 8px rgba(0, 0, 0, 0.6));
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .menu-bag .menu1-txt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-top: 0.5rem;
+  }
+
+  .menu-bag .menu1-burger :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgb(238, 162, 56));
+  }
+
+  .menu-bag .menu2-fries :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgba(182, 21, 16, 0.792));
+  }
+
+  .menu-bag .menu3-pasta :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgb(17, 15, 20));
+  }
+
+  .menu-bag .menu4-drink :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgb(63, 12, 7));
+  }
+
+  .menu-bag .menu5-sandwich :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgb(108, 100, 93));
+  }
+
+  .menu-bag .menu6-pizza :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgba(241, 190, 80, 0.696));
+  }
+
+  .menu-bag .menu7-combo :global(img):hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 12px 8px rgb(198, 115, 64));
+  }
+</style>

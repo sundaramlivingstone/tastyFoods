@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets"
+import delivery from "../assets/delivery.png"
 ---
+
 <section class="w-full py-5">
   <div class="w-full h-full flex items-center justify-between px-4 md:px-8 lg:px-12">
     <!-- Left Content -->
@@ -10,8 +13,8 @@
 
     <!-- Center Image -->
     <div class="flex-1 max-w-[30%] px-4">
-      <img 
-        src="/delivery.png" 
+      <Image
+        src={delivery}
         alt="Food Delivery Service" 
         class="w-full h-auto object-contain"
         loading="lazy"

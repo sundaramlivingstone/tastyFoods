@@ -1,0 +1,73 @@
+export const foodItems = [
+  {
+    title: "Spicy Burger",
+    price: 10.9,
+    imageSrc: "../assets/burger2.png",
+    rating: 4,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "French Fry",
+    price: 12.9,
+    imageSrc: "../assets/Fries.png",
+    rating: 5,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Pasta",
+    price: 10.9,
+    imageSrc: "../assets/pasta.png",
+    rating: 4,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Sandwiche",
+    price: 12.9,
+    imageSrc: "../assets/sandwiche.png",
+    rating: 5,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Pizza",
+    price: 10.9,
+    imageSrc: "../assets/Pizza.png",
+    rating: 4,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Cold Drinks",
+    price: 12.9,
+    imageSrc: "../assets/cold-drink.png",
+    rating: 5,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Combo",
+    price: 10.9,
+    imageSrc: "../assets/Combo.png",
+    rating: 4,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Combo 2",
+    price: 12.9,
+    imageSrc: "../assets/Combo.png",
+    rating: 5,
+    discount: "Get a 20% Discount On First Order",
+  },
+  // Additional items that will be shown after clicking "View All"
+  {
+    title: "Special Pizza",
+    price: 15.9,
+    imageSrc: "../assets/Pizza.png",
+    rating: 5,
+    discount: "Get a 20% Discount On First Order",
+  },
+  {
+    title: "Mega Burger",
+    price: 13.9,
+    imageSrc: "../assets/burger2.png",
+    rating: 4,
+    discount: "Get a 20% Discount On First Order",
+  },
+];

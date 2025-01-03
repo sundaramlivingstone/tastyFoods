@@ -1,0 +1,322 @@
+---
+import { getIconElement } from "astro/runtime/client/dev-toolbar/ui-library/icons.js";
+
+// ProfileEditor.astro
+const defaultProfilePics = [
+  "/src/assets/SVG/profilePic/profile1.svg",
+  "/src/assets/SVG/profilePic/profile2.svg",
+  "/src/assets/SVG/profilePic/profileDefault.svg",
+];
+
+// Initial states can be passed as props if needed
+const initialProfilePic = defaultProfilePics[2];
+---
+
+<div class="relative max-h-screen pb-20">
+  <!-- Header -->
+  <div class="bg-yellow-500 text-white p-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-bold">John Doe</h1>
+        <p class="text-sm opacity-90">+91 1234567890</p>
+      </div>
+      <button 
+        id="editProfileBtn" 
+        class="px-4 py-2 border border-white rounded-md hover:bg-yellow-300 transition-colors"
+      >
+        Edit Profile
+      </button>
+    </div>
+  </div>
+
+  <!-- Edit Profile Sidebar -->
+  <div 
+    id="editProfileSidebar" 
+    class="fixed top-0 right-0 h-full w-96 bg-gray-800 text-white shadow-lg transform translate-x-full transition-transform duration-300"
+  >
+    <div class="flex items-center justify-between px-6 py-4 bg-gray-900">
+      <h2 class="text-xl font-semibold">Edit Profile</h2>
+      <button 
+        id="closeSidebarBtn" 
+        class="w-8 h-8 flex items-center justify-center hover:bg-gray-700 rounded-full transition-all duration-200 group"
+      >
+        <svg 
+          class="w-6 h-6 text-gray-400 group-hover:text-red-500 transition-colors" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-6">
+      <!-- Profile Picture -->
+      <div class="text-center">
+        <img 
+          id="profileImage"
+          src={initialProfilePic} 
+          alt="Profile" 
+          class="w-24 h-24 mx-auto rounded-full shadow-md mb-4 object-cover"
+        />
+        <label 
+          for="uploadProfilePic" 
+          class="px-4 py-2 bg-blue-500 rounded-md text-white hover:bg-blue-600 transition cursor-pointer inline-block"
+        >
+          Upload Picture
+        </label>
+        <input 
+          type="file" 
+          accept="image/*" 
+          class="hidden" 
+          id="uploadProfilePic"
+        />
+      </div>
+      
+      <!-- Default Profile Pictures -->
+      <div class="space-y-2">
+        <h3 class="text-lg font-medium">Choose Default Picture</h3>
+        <div class="flex space-x-4" id="defaultPicsContainer">
+          {defaultProfilePics.map(pic => (
+            <img 
+              src={pic} 
+              alt="Default" 
+              class={`w-16 h-16 rounded-full shadow-md cursor-pointer hover:ring-2 hover:ring-blue-500 transition ${
+                pic === initialProfilePic ? "ring-2 ring-blue-500" : ""
+              }`}
+              data-profile-pic={pic}
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Profile Details -->
+      <form class="space-y-4" id="profileForm">
+        <div>
+          <label for="username" class="block text-sm font-medium">Name</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-800"
+            placeholder="John Doe"
+          />
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium">Phone Number</label>
+          <div class="flex items-center">
+            <select 
+              name="countryCode"
+              class="px-2 py-2 border border-gray-300 rounded-l-md bg-gray-100 focus:ring-2 focus:ring-yellow-500 text-gray-800"
+            >
+              <option>+91</option>
+              <option>+1</option>
+              <option>+44</option>
+              <option>+81</option>
+            </select>
+            <input 
+              type="text" 
+              id="phone" 
+              name="phone"
+              class="w-full px-4 py-2 border-t border-b border-r border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-800"
+              placeholder="1234567890"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium">Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-800"
+            placeholder="john.doe@example.com"
+          />
+        </div>
+        <div>
+          <label for="address" class="block text-sm font-medium">Address</label>
+          <textarea 
+            id="address" 
+            name="address"
+            rows="3" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-800"
+            placeholder="123 Main Street, City, Country"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Save Button Section -->
+    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gray-900">
+      <button 
+        id="saveChangesBtn"
+        class="w-full py-3 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 flex items-center justify-center space-x-2"
+      >
+        <svg 
+          class="w-5 h-5" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+        <span>Save Changes</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize elements
+  const editProfileBtn = document.getElementById("editProfileBtn");
+  const editProfileSidebar = document.getElementById("editProfileSidebar");
+  const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+  const uploadProfilePic = document.getElementById("uploadProfilePic");
+  const profileImage = document.getElementById("profileImage");
+  const defaultPicsContainer = document.getElementById("defaultPicsContainer");
+  const profileForm = document.getElementById("profileForm");
+  const saveChangesBtn = document.getElementById("saveChangesBtn");
+
+  let selectedProfilePic = profileImage?.src;
+  let uploadedProfilePic = null;
+
+  // Sidebar toggle
+  editProfileBtn?.addEventListener("click", () => {
+    editProfileSidebar?.classList.remove("translate-x-full");
+  });
+
+  closeSidebarBtn?.addEventListener("click", () => {
+    editProfileSidebar?.classList.add("translate-x-full");
+  });
+
+  // Handle file upload
+  uploadProfilePic?.addEventListener("change", (event) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Clean up previous uploaded profile pic URL
+      if (uploadedProfilePic) {
+        URL.revokeObjectURL(uploadedProfilePic);
+      }
+      uploadedProfilePic = URL.createObjectURL(file);
+      if (profileImage) {
+        profileImage.src = uploadedProfilePic;
+      }
+      // Remove selection ring from default pictures
+      document.querySelectorAll('[data-profile-pic]').forEach(img => {
+        img.classList.remove('ring-2', 'ring-blue-500');
+      });
+    }
+  });
+
+  // Handle default picture selection
+  defaultPicsContainer?.addEventListener("click", (event) => {
+    const target = event.target as HTMLImageElement;
+    if (target.hasAttribute('data-profile-pic')) {
+      const picSrc = target.getAttribute('data-profile-pic');
+      if (picSrc && profileImage) {
+        // Clean up previous uploaded profile pic URL
+        if (uploadedProfilePic) {
+          URL.revokeObjectURL(uploadedProfilePic);
+          uploadedProfilePic = null;
+        }
+        profileImage.src = picSrc;
+        selectedProfilePic = picSrc;
+        
+        // Update selection rings
+        document.querySelectorAll('[data-profile-pic]').forEach(img => {
+          img.classList.remove('ring-2', 'ring-blue-500');
+        });
+        target.classList.add('ring-2', 'ring-blue-500');
+      }
+    }
+  });
+
+  // Save changes handler
+  saveChangesBtn?.addEventListener("click", async () => {
+    if (!profileForm) return;
+
+    const formData = new FormData(profileForm);
+    const profileData = {
+      ...Object.fromEntries(formData),
+      profilePicture: uploadedProfilePic || selectedProfilePic
+    };
+
+    // Show loading state
+    const saveBtn = saveChangesBtn as HTMLButtonElement;
+    const originalContent = saveBtn.innerHTML;
+    saveBtn.innerHTML = `
+      <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      <span class="ml-2">Saving...</span>
+    `;
+    saveBtn.disabled = true;
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Show success message
+      saveBtn.innerHTML = `
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span class="ml-2">Changes Saved!</span>
+      `;
+      saveBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+      saveBtn.classList.add('bg-green-600');
+
+      // Close sidebar after success
+      setTimeout(() => {
+        editProfileSidebar?.classList.add("translate-x-full");
+        // Reset button state
+        setTimeout(() => {
+          saveBtn.innerHTML = originalContent;
+          saveBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+          saveBtn.classList.remove('bg-green-600');
+          saveBtn.disabled = false;
+        }, 300);
+      }, 1000);
+
+      console.log("Profile data saved:", profileData);
+    } catch (error) {
+      console.error("Error saving profile:", error);
+      
+      // Show error state
+      saveBtn.innerHTML = `
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+        <span class="ml-2">Error Saving</span>
+      `;
+      saveBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+      saveBtn.classList.add('bg-red-500');
+      
+      // Reset button state after error
+      setTimeout(() => {
+        saveBtn.innerHTML = originalContent;
+        saveBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+        saveBtn.classList.remove('bg-red-500');
+        saveBtn.disabled = false;
+      }, 2000);
+    }
+  });
+
+  // Clean up function for uploaded profile picture URLs
+  window.addEventListener('beforeunload', () => {
+    if (uploadedProfilePic) {
+      URL.revokeObjectURL(uploadedProfilePic);
+    }
+  });
+</script>

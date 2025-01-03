@@ -1,11 +1,17 @@
 ---
+import { Image } from "astro:assets";
+
+import trandingFood1 from "../assets/tranding-food-1.png"
+import trandingFood2 from "../assets/tranding-food-2.png"
+import trandingFood3 from "../assets/tranding-food-3.png"
+
 ---
-<section class="offerSection w-full min-h-screen flex flex-col gap-6 md:gap-10 pt-6 md:pt-10" id="offerSection">
+<section class="offerSection w-full  flex flex-col gap-6 md:gap-10 pt-6 md:pt-10" id="offerSection">
   <!-- Swiper Section -->
   <div class="swiper offers-slider px-5 md:px-8 lg:px-12 max-w-full">
     <div class="swiper-wrapper">
       <div class="swiper-slide glass">
-        <img src="/tranding-food-1.png" alt="Special Pizza Offer" loading="lazy" />
+        <Image src={trandingFood1} alt="Special Pizza Offer" loading="lazy" />
         <div class="offer-text">
           <h1>Pizza</h1>
           <a href="" class="pointer-events-auto">Get a 20% Discount On FIRST ORDER</a>
@@ -13,7 +19,7 @@
         </div>
       </div>
       <div class="swiper-slide glass">
-        <img src="/tranding-food-2.png" alt="Special Burger Offer" loading="lazy" />
+        <Image src={trandingFood2} alt="Special Burger Offer" loading="lazy" />
         <div class="offer-text">
           <h1>Burger</h1>
           <a href="" class="pointer-events-auto">Get a 20% Discount On FIRST ORDER</a>
@@ -21,7 +27,7 @@
         </div>
       </div>
       <div class="swiper-slide glass">
-        <img src="/tranding-food-3.png" alt="Special Combo Offer" loading="lazy" />
+        <Image src={trandingFood3} alt="Special Combo Offer" loading="lazy" />
         <div class="offer-text">
           <h1>Combo</h1>
           <a href="" class="pointer-events-auto">Get a 20% Discount On FIRST ORDER</a>
@@ -34,8 +40,8 @@
 
   <!-- About Section -->
   <div class="about flex flex-col lg:flex-row gap-8 px-4 md:px-8 lg:px-16 xl:px-24">
-    <div class="abtImg h-64 md:h-80 lg:h-96 bg-slate-600 w-full lg:w-1/2">
-      <img class="h-full w-full object-cover" src="/tranding-food-1.png" alt="Featured Dish" loading="lazy">
+    <div class="abtImage h-64 md:h-80 lg:h-96 bg-slate-600 w-full lg:w-1/2">
+      <Image class="h-full w-full object-cover" src={trandingFood1} alt="Featured Dish" loading="lazy">
     </div>
     <div class="abtMsg bg-white w-full lg:w-1/2 flex flex-col justify-evenly py-6 md:py-9 px-4 md:px-6">
       <h1 class="font-serif text-3xl md:text-4xl font-bold tracking-wide">About Tasty <span class="text-red-600">Food</span></h1>
@@ -47,8 +53,8 @@
         <li class="font-bold text-sm md:text-base">☑️ Made By Fresh Ingredients</li>
       </ul>
       <div class="w-full flex flex-col sm:flex-row gap-4 my-4 sm:justify-start">
-        <a href="#" class="bg-yellow-500 text-white border-2 border-yellow-300 rounded-full px-6 py-2 text-center hover:bg-yellow-600 transition-colors">Order Now</a>
-        <a href="#" class="text-black border-2 border-gray-950 rounded-full px-6 py-2 text-center hover:bg-gray-100 transition-colors">Read More</a>
+        <a href="#foodList" class="bg-yellow-500 text-white border-2 border-yellow-300 rounded-full px-6 py-2 text-center hover:bg-yellow-600 transition-colors">Order Now</a>
+        <a href="/About" class="text-black border-2 border-gray-950 rounded-full px-6 py-2 text-center hover:bg-gray-100 transition-colors">Read More</a>
       </div>
     </div>
   </div>
@@ -94,7 +100,7 @@
   cursor: grab;
 }
 
-.glass img {
+.glass Image {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

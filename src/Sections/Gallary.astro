@@ -1,0 +1,59 @@
+---
+// Import all images properly using Astro's import syntax
+import Gallary1 from "../assets/Gallary1.jpg";
+import Gallary2 from "../assets/Gallary2.jpg";
+import Gallary3 from "../assets/Gallary3.jpg";
+import Gallary4 from "../assets/Gallary4.jpg";
+import Gallary5 from "../assets/Gallary5.jpg";
+import Gallary6 from "../assets/Gallary6.jpg";
+import { Image } from "astro:assets";
+
+// Create array of imported images
+const foodImages = [
+  Gallary1,
+  Gallary2,
+  Gallary3,
+  Gallary4,
+  Gallary5,
+  Gallary6
+];
+---
+
+<section class="foodGallary container mx-auto px-4 py-16" id="foodGallary">
+  <div class="text-center mb-12">
+    <h2 class="text-4xl font-bold mb-4">Foods <span class="text-red-600">Gallery</span></h2>
+    <div class="h-1 w-24 bg-red-600 mx-auto"></div>
+  </div>
+
+  <div class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar">
+    {foodImages.map((image, index) => (
+      <div class="flex-none w-80 h-64 snap-start mr-4">
+        <Image 
+          src={image} 
+          alt={`Food Gallery Image ${index + 1}`}
+          class="w-full h-full object-cover rounded-lg"
+          width={320}
+          height={256}
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .foodGallary img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .foodGallary img:hover {
+    transform: scale(1.05);
+  }
+</style>

@@ -1,14 +1,134 @@
 ---
-
-import Hero from '../components/Hero.astro';
+import Hero from '../Sections/Hero.astro';
 import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro';
-import Offers from '../components/Offers.astro';
-import Delivery from '../components/Delivery.astro';
+import Menu from '../Sections/Menu.astro';
+import Offers from '../Sections/Offers.astro';
+import Delivery from '../Sections/Delivery.astro';
 import FoodList from '../components/FoodList.astro';
-import CustomerFeed from '../components/CustomerFeed.astro'
-import Gallary from '../components/Gallary.astro';
-import Contact from '../components/Contact.astro'
+import CustomerFeed from '../Sections/CustomerFeed.astro'
+import Gallary from '../Sections/Gallary.astro';
+
+// img
+import Burger from "../assets/burger2.png";
+import Pizza from "../assets/Pizza.png";
+import Fries from "../assets/Fries.png"
+import Sandwiche from "../assets/sandwiche.png"
+import Pasta from "../assets/pasta.png"
+import ColdDrink from "../assets/cold-drink.png"
+import Combo from "../assets/Combo.png"
+
+
+
+export const foodItems = [
+  {
+    title: "Classic Cheeseburger",
+    price: 12.99,
+    imageSrc:Burger,
+    rating: 5,
+    discount: "Get 15% off on your first order",
+    category: "Burger"
+  },
+  {
+    title: "Margherita Pizza",
+    price: 15.99,
+    imageSrc: Fries,
+    rating: 4,
+    discount: "Get 15% off on your first order",
+    category: "Fries"
+  },
+  {
+    title: "Fettuccine Alfredo",
+    price: 14.99,
+    imageSrc: Pasta,
+    rating: 4,
+    discount: "Get 15% off on your first order",
+    category: "Pasta"
+  },
+  {
+    title: "Loaded French Fries",
+    price: 8.99,
+    imageSrc: Sandwiche,
+    rating: 5,
+    discount: "Get 15% off on your first order",
+    category: "Sandwiche"
+  },
+  {
+    title: "Craft Cola",
+    price: 3.99,
+    imageSrc: ColdDrink,
+    rating: 4,
+    discount: "Get 15% off on your first order",
+    category: "Drinks"
+  },
+  {
+    title: "BBQ Chicken Pizza",
+    price: 17.99,
+    imageSrc: Pizza,
+    rating: 5,
+    discount: "Get 15% off on your first order",
+    category: "Pizza"
+  },
+  {
+    title: "Spicy Buffalo Wings",
+    price: 13.99,
+    imageSrc: Combo,
+    rating: 5,
+    discount: "Get 15% off on your first order",
+    category: "Burger"
+  },
+  {
+    title: "Vegetarian Wrap",
+    price: 10.99,
+    imageSrc: Combo,
+    rating: 4,
+    discount: "Get 15% off on your first order",
+    category: "Burger"
+  },
+  {
+    title: "Double Bacon Burger",
+    price: 16.99,
+    imageSrc: Burger,
+    rating: 5,
+    discount: "Get 15% off on your first order",
+    category: "Burger"
+  },
+  {
+    title: "Seafood Pasta",
+    price: 19.99,
+    imageSrc: Pasta,
+    rating: 5,
+    discount: "Get 15% off on your first order",
+    category: "Pasta"
+  },
+  {
+    title: "Truffle Fries",
+    price: 9.99,
+    imageSrc: Fries,
+    rating: 4,
+    discount: "Get 15% off on your first order",
+    category: "Fries"
+  },
+  {
+    title: "Fruit Smoothie",
+    price: 6.99,
+    imageSrc: ColdDrink,
+    rating: 4,
+    discount: "Get 15% off on your first order",
+    category: "Drinks"
+  }
+];
+
+// Custom categories that match our food items
+export const categories = [
+  "All Food",
+  "Burger",
+  "Pizza",
+  "Pasta",
+  "Fries",
+  "Drinks",
+  "Appetizers",
+  "Healthy"
+];
 ---
 
 <Layout>
@@ -16,8 +136,14 @@ import Contact from '../components/Contact.astro'
 	<Menu />
 	<Offers />
 	<Delivery />
-	<FoodList />
+	<FoodList
+  title="Our Delicious Menu"
+  description="Explore our wide selection of handcrafted dishes made with premium ingredients"
+  categories={categories}
+  foodItems={foodItems}
+  itemsPerPage={8}
+/>
 	<CustomerFeed />
 	<Gallary />
-	<Contact />
+
 </Layout>

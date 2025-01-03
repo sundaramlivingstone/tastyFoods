@@ -1,219 +1,170 @@
 ---
-// card.astro
-const foodItems = [
-  {
-    title: "Spicy Burger",
-    price: 10.90,
-    imageSrc: "/burger2.png",
-    rating: 4,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "French Fry",
-    price: 12.90,
-    imageSrc: "/Fries.png",
-    rating: 5,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Pasta",
-    price: 10.90,
-    imageSrc: "/pasta.png",
-    rating: 4,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Sandwiche",
-    price: 12.90,
-    imageSrc: "/sandwiche.png",
-    rating: 5,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Pizza",
-    price: 10.90,
-    imageSrc: "/Pizza.png",
-    rating: 4,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Cold Drinks",
-    price: 12.90,
-    imageSrc: "/cold-drink.png",
-    rating: 5,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Combo",
-    price: 10.90,
-    imageSrc: "/Combo.png",
-    rating: 4,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Combo 2",
-    price: 12.90,
-    imageSrc: "/Combo.png",
-    rating: 5,
-    discount: "Get a 20% Discount On First Order"
-  },
-  // Additional items that will be shown after clicking "View All"
-  {
-    title: "Special Pizza",
-    price: 15.90,
-    imageSrc: "/Pizza.png",
-    rating: 5,
-    discount: "Get a 20% Discount On First Order"
-  },
-  {
-    title: "Mega Burger",
-    price: 13.90,
-    imageSrc: "/burger2.png",
-    rating: 4,
-    discount: "Get a 20% Discount On First Order"
-  }
-];
+import { Image } from 'astro:assets';
+
+
+interface FoodItem {
+  title: string;
+  price: number;
+  imageSrc: any;
+  rating: number;
+  discount: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  categories?: string[];
+  foodItems: FoodItem[];
+  itemsPerPage?: number;
+}
+
+const {
+  title = "Our Popular Tasty Foods",
+  description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto dolorum culpa placeat debitis corrupti magni quibusdam deserunt, esse eveniet, enim dolor.",
+  categories = ["All Food", "Burger", "Pizza", "Pasta", "Fries", "Drinks"],
+  foodItems,
+  itemsPerPage = 8
+} = Astro.props;
+
+const initialItems = foodItems.slice(0, itemsPerPage);
+const remainingItems = foodItems.slice(itemsPerPage);
 ---
 
-<section class="foodList bg-gray-100 min-h-screen p-4 md:p-8 lg:px-24 flex flex-col gap-8">
-  <!-- Header Section -->
-  <div class="flex flex-col gap-5 text-center max-w-3xl mx-auto">
-    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-wrap">
-      Our Popular Tasty <span class="text-red-600">Foods</span>
-    </h1>
-    <p class="text-center text-sm md:text-base px-4 ">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto dolorum culpa placeat debitis corrupti magni quibusdam deserunt, esse eveniet, enim dolor.
-    </p>
-  </div>
-
-  <div class="w-full flex flex-col gap-8">
-    <!-- Navigation Menu -->
-    <div class="w-full overflow-x-auto">
-      <ul class="flex justify-evenly items-center min-w-max md:w-4/5 lg:w-3/5 mx-auto px-10 py-2 gap-4">
-        <li>
-          <a href="#" class="bg-yellow-500 text-white border-2 border-yellow-300 rounded-full px-4 py-2 whitespace-nowrap">All Food</a>
-        </li>
-        <li>
-          <a href="#" class="border-2 border-gray-200 rounded-full px-4 py-2 whitespace-nowrap hover:bg-gray-700 hover:text-white  transition-colors">Burger</a>
-        </li>
-        <li>
-          <a href="#" class=" border-2 border-gray-200 rounded-full px-4 py-2 whitespace-nowrap hover:bg-gray-700 hover:text-white transition-colors">Pizza</a>
-        </li>
-        <li>
-          <a href="#" class="border-2 border-gray-200 rounded-full px-4 py-2 whitespace-nowrap hover:bg-gray-700 hover:text-white transition-colors">Pasta</a>
-        </li>
-        <li>
-          <a href="#" class="border-2 border-gray-200 rounded-full px-4 py-2 whitespace-nowrap hover:bg-gray-700 hover:text-white transition-colors">Fries</a>
-        </li>
-        <li>
-          <a href="#" class="border-2 border-gray-200 rounded-full px-4 py-2 whitespace-nowrap hover:bg-gray-700 hover:text-white transition-colors">Drinks</a>
-        </li>
-      </ul>
+  <section class="foodList bg-gray-100 min-h-screen p-4 md:p-8 lg:px-24 flex flex-col gap-8" id="foodList">
+    <!-- Header Section -->
+    <div class="flex flex-col gap-5 text-center max-w-3xl mx-auto">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-wrap">
+        {title.split(' ').map((word, index) => 
+          index === title.split(' ').length - 1 
+            ? <span class="text-red-600">{word}</span>
+            : word + ' '
+        )}
+      </h1>
+      <p class="text-center text-sm md:text-base px-4">
+        {description}
+      </p>
     </div>
 
-    <!-- Product Cards Container -->
-    <div class="flex flex-col items-center gap-8">
-      <!-- Initial Products Grid -->
-      <div id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-        {foodItems.slice(0, 8).map((item) => (
-          <div class="bg-white rounded-xl p-4 shadow-lg w-full transition-transform hover:scale-105">
-            <div class="relative aspect-video">
-              <img 
-                src={item.imageSrc} 
-                alt={item.title} 
-                class="w-full h-full object-contain rounded-lg"
-              />
-              <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                <i class="fa-regular fa-heart text-xl"></i>
-              </button>
-            </div>
-
-            <div class="space-y-2 mt-4">
-              <div class="flex gap-1">
-                {[...Array(5)].map((_, index) => (
-                  <i class={`fa-solid fa-star text-sm ${
-                    index < item.rating ? 'text-yellow-400' : 'text-gray-200'
-                  }`}></i>
-                ))}
-              </div>
-
-              <h3 class="font-bold text-lg text-gray-800">{item.title}</h3>
-              <p class="text-sm text-gray-500">{item.discount}</p>
-
-              <div class="flex items-center justify-between pt-2">
-                <span class="text-red-600 font-bold text-lg">${item.price.toFixed(2)}</span>
-                <button class="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                  <i class="fa-solid fa-cart-arrow-down"></i>
-                  <span class="text-sm">Add to Cart</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+    <div class="w-full flex flex-col gap-8">
+      <!-- Navigation Menu -->
+      <div class="w-full overflow-x-auto scrollbar-hide">
+        <ul class="flex justify-evenly items-center min-w-max md:w-4/5 lg:w-3/5 mx-auto px-10 py-2 gap-4">
+          {categories.map((category, index) => (
+            <li>
+              <a 
+                href="#" 
+                class={`${
+                  index === 0 
+                    ? "bg-yellow-500 text-white border-2 border-yellow-300" 
+                    : "border-2 border-gray-200 hover:bg-gray-700 hover:text-white"
+                } rounded-full px-4 py-2 whitespace-nowrap transition-colors`}
+              >
+                {category}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <!-- Hidden Products (will be shown after clicking View All) -->
-      <div id="hiddenProducts" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-        {foodItems.slice(8).map((item) => (
-          <div class="bg-white rounded-xl p-4 shadow-lg w-full transition-transform hover:scale-105">
-            <div class="relative aspect-video">
-              <img 
-                src={item.imageSrc} 
-                alt={item.title} 
-                class="w-full h-full object-contain rounded-lg"
-              />
-              <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                <i class="fa-regular fa-heart text-xl"></i>
-              </button>
-            </div>
+      <!-- Product Cards Container -->
+      <div class="flex flex-col items-center gap-8">
+        <!-- All Products Grid Container -->
+        <div class="w-full">
+          <div id="allProductsContainer" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {foodItems.map((item, index) => (
+              <div class={`bg-white rounded-xl p-4 shadow-lg w-full transition-transform hover:scale-105 ${index >= itemsPerPage ? 'hidden' : ''}`}
+              data-item-index={index}>
+                <div class="relative aspect-video">
+                  <Image 
+                    src={item.imageSrc} 
+                    alt={item.title} 
+                    class="w-full h-full object-contain rounded-lg"
+                  />
+                  <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
+                    <i class="fa-regular fa-heart text-xl"></i>
+                  </button>
+                </div>
 
-            <div class="space-y-2 mt-4">
-              <div class="flex gap-1">
-                {[...Array(5)].map((_, index) => (
-                  <i class={`fa-solid fa-star text-sm ${
-                    index < item.rating ? 'text-yellow-400' : 'text-gray-200'
-                  }`}></i>
-                ))}
+                <div class="space-y-2 mt-4">
+                  <div class="flex gap-1">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <i class={`fa-solid fa-star text-sm ${
+                        idx < item.rating ? 'text-yellow-400' : 'text-gray-200'
+                      }`}></i>
+                    ))}
+                  </div>
+
+                  <h3 class="font-bold text-lg text-gray-800">{item.title}</h3>
+                  <p class="text-sm text-gray-500">{item.discount}</p>
+
+                  <div class="flex items-center justify-between pt-2">
+                    <span class="text-red-600 font-bold text-lg">${item.price.toFixed(2)}</span>
+                    <button class="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
+                      <i class="fa-solid fa-cart-arrow-down"></i>
+                      <span class="text-sm hidden sm:inline">Add to Cart</span>
+                    </button>
+                  </div>
+                </div>
               </div>
-
-              <h3 class="font-bold text-lg text-gray-800">{item.title}</h3>
-              <p class="text-sm text-gray-500">{item.discount}</p>
-
-              <div class="flex items-center justify-between pt-2">
-                <span class="text-red-600 font-bold text-lg">${item.price.toFixed(2)}</span>
-                <button class="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-                  <i class="fa-solid fa-cart-arrow-down"></i>
-                  <span class="text-sm">Add to Cart</span>
-                </button>
-              </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
 
-      <!-- View All Products Button -->
-      {foodItems.length > 8 && (
-        <button
-          id="viewAllButton"
-          class="bg-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-colors shadow-lg mb-8"
-        >
-          View All Products
-        </button>
-      )}
+        <!-- View All Products Button -->
+        {remainingItems.length > 0 && (
+          <button
+            id="viewAllButton"
+            class="bg-yellow-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-yellow-600 transition-colors shadow-lg mb-8"
+          >
+            View All Products
+          </button>
+        )}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+<!-- -------------------------------- Style -------------------------------- -->
+
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<!-- -------------------------------- Script -------------------------------- -->
 
 <script>
   const viewAllButton = document.getElementById('viewAllButton');
-  const hiddenProducts = document.getElementById('hiddenProducts');
+  const allProducts = document.querySelectorAll('[data-item-index]');
+  let isExpanded = false;
 
-  if (viewAllButton && hiddenProducts) {
+  if (viewAllButton) {
     viewAllButton.addEventListener('click', () => {
-      hiddenProducts.classList.toggle('hidden');
-      viewAllButton.textContent = hiddenProducts.classList.contains('hidden') 
-        ? 'View All Products' 
-        : 'Show Less';
+      isExpanded = !isExpanded;
+      
+      allProducts.forEach(product => {
+        const index = parseInt(product.getAttribute('data-item-index') || '0');
+        if (index >= 8) {
+          product.classList.toggle('hidden');
+        }
+      });
+
+      // Smooth scroll to newly visible items when expanding
+      if (isExpanded) {
+        const firstHiddenItem = document.querySelector('[data-item-index="8"]');
+        if (firstHiddenItem) {
+          setTimeout(() => {
+            firstHiddenItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+
+      viewAllButton.textContent = isExpanded ? 'Show Less' : 'View All Products';
     });
   }
 </script>
